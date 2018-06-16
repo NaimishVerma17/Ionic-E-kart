@@ -8,11 +8,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {StoreModule} from "@ngrx/store";
 import {rootReducer} from "../reducers";
+import {ToolbarComponent} from "../components/toolbar/toolbar";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
