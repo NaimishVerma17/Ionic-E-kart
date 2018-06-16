@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {StoreModule} from "@ngrx/store";
+import {rootReducer} from "../reducers";
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot(rootReducer),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
