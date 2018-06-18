@@ -8,6 +8,7 @@ import 'rxjs/add/operator/combineLatest'
 import 'rxjs/add/operator/take'
 import {Login, LoginComplete, LoginFiled} from "../actions/app.action";
 import {User} from "../models/user.model";
+import {errorHandler} from "@angular/platform-browser/src/browser";
 
 
 @Injectable()
@@ -16,22 +17,26 @@ export class AuthRepository {
               private store: Store<RootState>) {
   }
 
-  login(email:string,password:string) {
-    const loaded$ = this.store.select(getLoggedInUserLoaded);
-    const loading$ = this.store.select(getLoggedInUserLoading);
-    const combineLatest$ = loaded$.combineLatest(loading$, (loaded, loading) => loaded || loading);
-    combineLatest$.take(1).subscribe(status => {
-      this.store.dispatch(new Login());
-      if (!status) {
-        this.authService.login().subscribe(data => {
-            //this.store.dispatch(new LoginComplete(data.user))
-          },
-          error1 => this.store.dispatch(new LoginFiled()));
-      }
-    })
+  login(email: string, password: string) {
+
+    this.authService.login(email, password)
+      .then(res => {
+        console.log(res);
+        // this.store.dispatch(new LoginComplete())
+        return true;
+      })
+      .catch(error => console.log(error));
+    this.store.dispatch(new LoginFiled());
+
   }
 
-  register(){
-    this.authService.register();
+  register(email: string, password: string) {
+    try {
+      const res = this.authService.register(email, password);
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+      this.store.dispatch(new LoginFiled());
+    }
   }
 }

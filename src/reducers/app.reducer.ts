@@ -6,7 +6,7 @@ export interface AppState {
   loggedInUser: User;
   loggedInUserLoaded: boolean,
   loggedInUserLoading: boolean,
-  isLoggedIn: boolean;
+  isLoggedIn: boolean
 }
 
 export const initialState: AppState = {
