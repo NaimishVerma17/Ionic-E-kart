@@ -1,0 +1,17 @@
+ek-toolbar {
+  ion-header {
+    .navbar-container {
+      width: 100%;
+      display: flex;
+      ion-icon{
+        color:#ffffff;
+      }
+      .navbar-container__title{
+        flex: 1 1 auto;
+        .toolbar-title{
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}

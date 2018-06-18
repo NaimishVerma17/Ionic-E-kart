@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import {StoreModule} from "@ngrx/store";
 import {rootReducer} from "../reducers";
 import {ToolbarComponent} from "../components/toolbar/toolbar";
+import {AuthService} from "../services/auth.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ToolbarComponent} from "../components/toolbar/toolbar";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService
   ]
 })
 export class AppModule {}
