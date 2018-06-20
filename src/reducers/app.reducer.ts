@@ -42,6 +42,9 @@ export function appReducer(state: AppState = initialState, action: Action): AppS
         loggedInUserLoading: false
       }
     }
+    default:{
+      return state;
+    }
   }
 }
 

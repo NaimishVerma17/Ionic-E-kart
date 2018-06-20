@@ -1,5 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthRepository} from "../../repository/auth.repository";
+import {LayoutServices} from "../../services/layout.services";
+import {User} from "../../models/user.model";
+import {NavController} from "ionic-angular";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -15,7 +20,10 @@ export class SignupPage {
   phoneNo: FormControl;
   password: FormControl;
 
-  constructor() {
+  constructor(private authRepo: AuthRepository,
+              private layoutService: LayoutServices,
+              private navCtrl: NavController,
+              private authService: AuthService) {
     this.name = new FormControl('', [Validators.required]);
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.city = new FormControl('', [Validators.required]);
@@ -32,7 +40,24 @@ export class SignupPage {
   }
 
   registerUser() {
-    console.log(this.formGroup.value);
+    const details=this.formGroup.value;
+    const response = this.authRepo.register(details);
+    response.then(user => {
+      this.formGroup.reset();
+      const userDetails: User = {
+        id: user.user.uid,
+        name: details.register_name,
+        email: details.register_email,
+        city: details.register_city,
+        phoneNo: details.register_phone,
+      };
+      this.authService.setUserDetails(userDetails).then(status => {
+        this.navCtrl.pop();
+      });
+
+    }).catch(error => {
+      this.layoutService.showToast(error.message);
+    })
   }
 
 

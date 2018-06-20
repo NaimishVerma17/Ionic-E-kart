@@ -15,6 +15,9 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/datab
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AuthRepository} from "../repository/auth.repository";
 import {SignupPage} from "../pages/signup/signup";
+import {LayoutServices} from "../services/layout.services";
+import {AppService} from "../services/app.service";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -35,6 +38,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     StoreModule.forRoot(rootReducer),
+    StoreDevtoolsModule.instrument({maxAge: 50}),
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -52,7 +56,9 @@ export const firebaseConfig = {
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    AuthRepository
+    AuthRepository,
+    LayoutServices,
+    AppService
   ]
 })
 export class AppModule {

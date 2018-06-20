@@ -24,7 +24,8 @@ export class LoginPage {
   }
 
   loginUser() {
-    console.log(this.formGroup.value);
+    const loginDetails=this.formGroup.value;
+    this.authRepository.login(loginDetails);
   }
 
   registerUser(){

@@ -1,14 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {Observable} from "rxjs/Observable"
 
 import {AuthService} from "../services/auth.service";
 import {getLoggedInUserLoaded, getLoggedInUserLoading, RootState} from "../reducers";
 import 'rxjs/add/operator/combineLatest'
 import 'rxjs/add/operator/take'
 import {Login, LoginComplete, LoginFiled} from "../actions/app.action";
-import {User} from "../models/user.model";
-import {errorHandler} from "@angular/platform-browser/src/browser";
 
 
 @Injectable()
@@ -17,26 +14,26 @@ export class AuthRepository {
               private store: Store<RootState>) {
   }
 
-  login(email: string, password: string) {
-
-    this.authService.login(email, password)
-      .then(res => {
-        console.log(res);
-        // this.store.dispatch(new LoginComplete())
-        return true;
-      })
-      .catch(error => console.log(error));
-    this.store.dispatch(new LoginFiled());
+  login(loginDetails: { email: string, password: string }) {
+    let loaded$ = this.store.select(getLoggedInUserLoaded);
+    let loading$ = this.store.select(getLoggedInUserLoading);
+    let combineLatest$ = loaded$.combineLatest(loading$, (loaded, loading) => loaded || loading).take(1);
+    combineLatest$.subscribe(status => {
+      this.store.dispatch(new Login());
+      if (!status) {
+        this.authService.login(loginDetails.email, loginDetails.password)
+          .then(data => {
+            console.log("success",data);
+            this.authService.setToken(data.user.refreshToken);
+            // this.store.dispatch(new LoginComplete())
+          }).catch(e => this.store.dispatch(new LoginFiled()))
+      }
+    })
 
   }
 
-  register(email: string, password: string) {
-    try {
-      const res = this.authService.register(email, password);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-      this.store.dispatch(new LoginFiled());
-    }
+  register(userDetails) {
+    return this.authService.register(userDetails.register_email, userDetails.register_password)
   }
 }
+
