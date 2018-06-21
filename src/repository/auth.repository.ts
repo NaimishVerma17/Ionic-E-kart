@@ -6,15 +6,19 @@ import {getLoggedInUserLoaded, getLoggedInUserLoading, RootState} from "../reduc
 import 'rxjs/add/operator/combineLatest'
 import 'rxjs/add/operator/take'
 import {Login, LoginComplete, LoginFiled} from "../actions/app.action";
+import {User} from "../models/user.model";
+import {LayoutServices} from "../services/layout.services";
 
 
 @Injectable()
 export class AuthRepository {
   constructor(private authService: AuthService,
-              private store: Store<RootState>) {
+              private store: Store<RootState>,
+              private layoutService: LayoutServices) {
   }
 
   login(loginDetails: { email: string, password: string }) {
+
     let loaded$ = this.store.select(getLoggedInUserLoaded);
     let loading$ = this.store.select(getLoggedInUserLoading);
     let combineLatest$ = loaded$.combineLatest(loading$, (loaded, loading) => loaded || loading).take(1);
@@ -23,12 +27,17 @@ export class AuthRepository {
       if (!status) {
         this.authService.login(loginDetails.email, loginDetails.password)
           .then(data => {
-            console.log("success",data);
             this.authService.setToken(data.user.refreshToken);
-            // this.store.dispatch(new LoginComplete())
-          }).catch(e => this.store.dispatch(new LoginFiled()))
+            this.authService.getUserDetailRef(data.user.uid).on("value", (user) => {
+              const userDetails: User = user.val();
+              this.store.dispatch(new LoginComplete(userDetails));
+            });
+          }).catch(e => {
+          this.store.dispatch(new LoginFiled());
+          this.layoutService.showToast(e.message);
+        })
       }
-    })
+    });
 
   }
 

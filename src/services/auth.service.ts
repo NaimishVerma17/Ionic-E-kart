@@ -1,4 +1,3 @@
-import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
@@ -18,9 +17,14 @@ export class AuthService {
   register(email: string, password: string) {
     return this.fbAuth.auth.createUserWithEmailAndPassword(email, password);
   }
-  setUserDetails(userDetails:User): Promise<any>{
+
+  setUserDetails(userDetails: User): Promise<any> {
     console.log(userDetails);
-    return this.angularFireDb.database.ref("/userProfile/" + userDetails.id).set(userDetails);
+    return this.getUserDetailRef(userDetails.id).set(userDetails);
+  }
+
+  getUserDetailRef(userId) {
+    return this.angularFireDb.database.ref("/userProfile/" + userId);
   }
 
   logout(): Promise<any> {
