@@ -17,6 +17,7 @@ import {
   _getIsAllProductsLoading,
   _getLoggedInUserProductIds,
   _getOtherHouseHoldProductIds,
+  _getVehiclesProductIds,
   productCategoryReducer,
   ProductCategoryState
 } from "./product-category.reducer";
@@ -58,9 +59,9 @@ export const getIsAllProductsLoading = createSelector(getProductsCategoryState, 
 export const getLoggedInUserProductIds = createSelector(getProductsCategoryState, _getLoggedInUserProductIds);
 export const getFurnitureProductIds = createSelector(getProductsCategoryState, _getFurnitureProductIds);
 export const getElectronicsProductIds = createSelector(getProductsCategoryState, _getElectronicsProductIds);
-export const getVehiclesProductIds = createSelector(getProductsCategoryState, _getBooksProductIds);
-export const getBooksProductIds = createSelector(getProductsCategoryState, _getAccessoriesProductIds);
-export const getAccessoriesProductIds = createSelector(getProductsCategoryState, _getFurnitureProductIds);
+export const getVehiclesProductIds = createSelector(getProductsCategoryState, _getVehiclesProductIds);
+export const getBooksProductIds = createSelector(getProductsCategoryState, _getBooksProductIds);
+export const getAccessoriesProductIds = createSelector(getProductsCategoryState, _getAccessoriesProductIds);
 export const getOtherHouseHoldProductIds = createSelector(getProductsCategoryState, _getOtherHouseHoldProductIds);
 
 export const getLoggedInUserProducts =
@@ -68,35 +69,35 @@ export const getLoggedInUserProducts =
     getProductEntities,
     (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getFurnitureProducts=
+export const getFurnitureProducts =
   createSelector(getFurnitureProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getElectronicsProducts=
+export const getElectronicsProducts =
   createSelector(getElectronicsProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getVehiclesProducts=
+export const getVehiclesProducts =
   createSelector(getVehiclesProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getBooksProducts=
+export const getBooksProducts =
   createSelector(getBooksProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getAccessoriesProducts=
+export const getAccessoriesProducts =
   createSelector(getAccessoriesProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
-export const getOtherHouseHoldProducts=
+export const getOtherHouseHoldProducts =
   createSelector(getOtherHouseHoldProductIds,
     getProductEntities,
-    (ids,entities)=>ids.map(id => entities[id]).filter(prod => !!prod)
+    (ids, entities) => ids.map(id => entities[id]).filter(prod => !!prod)
   );
 
 
