@@ -100,10 +100,10 @@ export function productCategoryReducer(state: ProductCategoryState = initialStat
       const savedIds = state[productCategory].filter(id => id !== productId);
       const loggedInUserProductIds = state.loggedInUserProducts.filter(id => id !== productId);
 
-      return{
+      return {
         ...state,
-        loggedInUserProducts:loggedInUserProductIds,
-        [productCategory]:savedIds
+        loggedInUserProducts: loggedInUserProductIds,
+        [productCategory]: savedIds
       };
     }
 
@@ -111,3 +111,13 @@ export function productCategoryReducer(state: ProductCategoryState = initialStat
       return state;
   }
 }
+
+export const _getLoggedInUserProductIds = (state: ProductCategoryState) => state.loggedInUserProducts;
+export const _getIsAllProductsLoaded = (state: ProductCategoryState) => state.allProductsLoaded;
+export const _getIsAllProductsLoading = (state: ProductCategoryState) => state.allProductsLoading;
+export const _getFurnitureProductIds = (state: ProductCategoryState) => state.furniture;
+export const _getVehiclesProductIds = (state: ProductCategoryState) => state.vehicles;
+export const _getAccessoriesProductIds = (state: ProductCategoryState) => state.accessories;
+export const _getBooksProductIds = (state: ProductCategoryState) => state.books;
+export const _getElectronicsProductIds = (state: ProductCategoryState) => state.electronics;
+export const _getOtherHouseHoldProductIds = (state: ProductCategoryState) => state.otherHouseHolds;
