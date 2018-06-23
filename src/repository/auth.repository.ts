@@ -5,7 +5,7 @@ import {AuthService} from "../services/auth.service";
 import {getLoggedInUserLoaded, getLoggedInUserLoading, RootState} from "../reducers";
 import 'rxjs/add/operator/combineLatest'
 import 'rxjs/add/operator/take'
-import {Login, LoginComplete, LoginFiled} from "../actions/app.action";
+import {Login, LoginComplete, LoginFiled, LogoutSuccess} from "../actions/app.action";
 import {User} from "../models/user.model";
 import {LayoutServices} from "../services/layout.services";
 
@@ -43,6 +43,14 @@ export class AuthRepository {
 
   register(userDetails) {
     return this.authService.register(userDetails.register_email, userDetails.register_password)
+  }
+
+  logout() {
+    this.authService.logout().then(() => {
+      this.store.dispatch(new LogoutSuccess());
+    }).catch((e) => {
+      this.layoutService.showToast(e.message);
+    });
   }
 }
 

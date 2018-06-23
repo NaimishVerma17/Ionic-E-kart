@@ -42,6 +42,15 @@ export function appReducer(state: AppState = initialState, action: Action): AppS
         loggedInUserLoading: false
       }
     }
+
+    case AppActions.LOGOUT_SUCCESS:{
+      return {
+        ...state,
+        isLoggedIn:false,
+        loggedInUserLoaded:false,
+        loggedInUser:null
+      }
+    }
     default:{
       return state;
     }
