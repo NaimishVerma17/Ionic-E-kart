@@ -18,6 +18,9 @@ import {SignupPage} from "../pages/signup/signup";
 import {LayoutServices} from "../services/layout.services";
 import {AppService} from "../services/app.service";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {SingleCategoryComponent} from "../components/single-category/single-category";
+import {CategoriesPage} from "../pages/categories/categories";
+import {ComponentsModule} from "../components/components.module";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -32,14 +35,15 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     LoginPage,
-    ToolbarComponent,
-    SignupPage
+    SignupPage,
+    CategoriesPage
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot(rootReducer),
     StoreDevtoolsModule.instrument({maxAge: 50}),
     IonicModule.forRoot(MyApp),
+    ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule
@@ -48,7 +52,8 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     LoginPage,
-    SignupPage
+    SignupPage,
+    CategoriesPage
   ],
   providers: [
     StatusBar,

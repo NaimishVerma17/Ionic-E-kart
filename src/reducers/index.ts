@@ -21,7 +21,6 @@ import {
   productCategoryReducer,
   ProductCategoryState
 } from "./product-category.reducer";
-import {Dictionary} from "@ngrx/entity/src/models";
 
 
 export interface RootState {

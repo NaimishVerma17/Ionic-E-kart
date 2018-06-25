@@ -8,13 +8,14 @@ import 'rxjs/add/operator/take'
 import {Login, LoginComplete, LoginFiled, LogoutSuccess} from "../actions/app.action";
 import {User} from "../models/user.model";
 import {LayoutServices} from "../services/layout.services";
+import {CategoriesPage} from "../pages/categories/categories";
 
 
 @Injectable()
 export class AuthRepository {
   constructor(private authService: AuthService,
               private store: Store<RootState>,
-              private layoutService: LayoutServices) {
+              private layoutService: LayoutServices,){
   }
 
   login(loginDetails: { email: string, password: string }) {
