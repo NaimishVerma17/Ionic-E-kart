@@ -6,8 +6,8 @@ import {
   appReducer,
   AppState
 } from "./app.reducer";
-import {ActionReducerMap, createSelector} from "@ngrx/store"
-import {productReducer, ProductState, productAdapter} from "./product.reducer";
+import { ActionReducerMap, createSelector } from "@ngrx/store"
+import { productReducer, ProductState, productAdapter } from "./product.reducer";
 import {
   _getAccessoriesProductIds,
   _getBooksProductIds,

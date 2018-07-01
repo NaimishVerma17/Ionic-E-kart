@@ -1,6 +1,6 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
-import {Product} from "../models/product.model";
-import {Action} from "../actions";
+import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
+import { Product } from "../models/product.model";
+import { Action } from "../actions";
 import * as ProductsAction from "../actions/products.action"
 
 export interface ProductState extends EntityState<Product> {
