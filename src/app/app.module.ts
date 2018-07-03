@@ -20,6 +20,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {CategoriesPage} from "../pages/categories/categories";
 import {ComponentsModule} from "../components/components.module";
 import { UploadItemPage } from "../pages/upload-item/upload-item";
+import { ProductRepository } from "../repository/product.repository";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -63,6 +64,7 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     AuthRepository,
+    ProductRepository,
     LayoutServices,
     AppService
   ]

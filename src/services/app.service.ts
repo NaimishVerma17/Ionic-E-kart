@@ -9,7 +9,7 @@ export class AppService {
 
   }
 
-  put() {
+  set() {
 
   }
 

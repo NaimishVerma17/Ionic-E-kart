@@ -32,10 +32,7 @@ export class AuthRepository {
         this.authService.login(loginDetails.email, loginDetails.password)
           .then(data => {
             this.authService.setToken(data.user.refreshToken);
-            this.authService.getUserDetailRef(data.user.uid).on("value", (user) => {
-              const userDetails: User = user.val();
-              this.store.dispatch(new LoginComplete(userDetails));
-            });
+           this.saveUser(data.user.uid);
           }).catch(e => {
           this.store.dispatch(new LoginFiled());
           this.layoutService.showToast(e.message);
@@ -54,6 +51,13 @@ export class AuthRepository {
       this.store.dispatch(new LogoutSuccess());
     }).catch((e) => {
       this.layoutService.showToast(e.message);
+    });
+  }
+
+  saveUser(uid:string){
+    this.authService.getUserDetailRef(uid).on("value", (user) => {
+      const userDetails: User = user.val();
+      this.store.dispatch(new LoginComplete(userDetails));
     });
   }
 }
