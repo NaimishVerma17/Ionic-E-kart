@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthRepository} from "../../repository/auth.repository";
-import {LayoutServices} from "../../services/layout.services";
-import {User} from "../../models/user.model";
-import {NavController} from "ionic-angular";
-import {AuthService} from "../../services/auth.service";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthRepository } from "../../repository/auth.repository";
+import { LayoutServices } from "../../services/layout.services";
+import { User } from "../../models/user.model";
+import { NavController } from "ionic-angular";
+import { AuthService } from "../../services/auth.service";
 
 
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: "page-signup",
+  templateUrl: "signup.html",
 })
 export class SignupPage {
 
@@ -24,23 +24,23 @@ export class SignupPage {
               private layoutService: LayoutServices,
               private navCtrl: NavController,
               private authService: AuthService) {
-    this.name = new FormControl('', [Validators.required]);
-    this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.city = new FormControl('', [Validators.required]);
-    this.phoneNo = new FormControl('', [Validators.required, Validators.maxLength(10)]);
-    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    this.name = new FormControl("", [Validators.required]);
+    this.email = new FormControl("", [Validators.required, Validators.email]);
+    this.city = new FormControl("", [Validators.required]);
+    this.phoneNo = new FormControl("", [Validators.required, Validators.maxLength(10)]);
+    this.password = new FormControl("", [Validators.required, Validators.minLength(6)]);
     this.formGroup = new FormGroup({
-      'register_name': this.name,
-      'register_email': this.email,
-      'register_city': this.city,
-      'register_phone': this.phoneNo,
-      'register_password': this.password,
+      "register_name": this.name,
+      "register_email": this.email,
+      "register_city": this.city,
+      "register_phone": this.phoneNo,
+      "register_password": this.password,
     });
 
   }
 
   registerUser() {
-    const details=this.formGroup.value;
+    const details = this.formGroup.value;
     const response = this.authRepo.register(details);
     response.then(user => {
       this.formGroup.reset();

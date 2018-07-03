@@ -4,10 +4,10 @@ import {Component, Input} from '@angular/core';
   selector: 'ek-toolbar',
   template:`
   <ion-header>
-    <ion-navbar>
+    <ion-navbar padding>
       <div class="navbar-container">
         <div *ngIf="showMenuIcon">
-          <ion-buttons >
+          <ion-buttons>
             <ion-icon name="menu"></ion-icon>
           </ion-buttons>
         </div>

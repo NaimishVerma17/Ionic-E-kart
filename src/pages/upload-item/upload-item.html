@@ -1,34 +1,35 @@
 <ek-toolbar toolbarTitle="Upload Item" [showMenuIcon]="false"></ek-toolbar>
-
-
 <ion-content padding margin-top="50px">
   <ion-card padding>
     <ion-list>
-      <ion-item>
-        <ion-label stacked>Product name:</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Category:</ion-label>
-        <ion-select multiple="false" placeholder="Accessories">
-          <ion-option>Accessories</ion-option>
-          <ion-option>Books</ion-option>
-          <ion-option>Electronics</ion-option>
-          <ion-option>Furniture</ion-option>
-          <ion-option>Vehicles</ion-option>
-          <ion-option>Other house hold</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Short description:</ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
+      <form [formGroup]="formGroup" (ngSubmit)="addProduct()">
+        <ion-item>
+          <ion-label stacked>Product name:</ion-label>
+          <ion-input type="text" formControlName="product_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Category:</ion-label>
+          <ion-select multiple="false" placeholder="Accessories" formControlName="product_category">
+            <ion-option value="accessories">Accessories</ion-option>
+            <ion-option value="books">Books</ion-option>
+            <ion-option value="electronics">Electronics</ion-option>
+            <ion-option value="furniture">Furniture</ion-option>
+            <ion-option value="vehicles">Vehicles</ion-option>
+            <ion-option value="otherHouseHolds">Other house hold</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Short description:</ion-label>
+          <ion-textarea formControlName="product_description"></ion-textarea>
+        </ion-item>
+        <div text-center>
+          <button ion-button icon-start outline type="submit" [disabled]="!formGroup.valid">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            Submit
+          </button>
+        </div>
+      </form>
     </ion-list>
   </ion-card>
-  <div text-center>
-    <button ion-button icon-start outline>
-      <ion-icon name="checkmark-circle"></ion-icon>
-      Submit
-    </button>
-  </div>
+
 </ion-content>
