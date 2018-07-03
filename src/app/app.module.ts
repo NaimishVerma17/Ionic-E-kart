@@ -8,7 +8,6 @@ import {MyApp} from './app.component';
 import {LoginPage} from "../pages/login/login";
 import {StoreModule} from "@ngrx/store";
 import {rootReducer} from "../reducers";
-import {ToolbarComponent} from "../components/toolbar/toolbar";
 import {AuthService} from "../services/auth.service";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/database";
@@ -18,9 +17,9 @@ import {SignupPage} from "../pages/signup/signup";
 import {LayoutServices} from "../services/layout.services";
 import {AppService} from "../services/app.service";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {SingleCategoryComponent} from "../components/single-category/single-category";
 import {CategoriesPage} from "../pages/categories/categories";
 import {ComponentsModule} from "../components/components.module";
+import { UploadItemPage } from "../pages/upload-item/upload-item";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -36,7 +35,8 @@ export const firebaseConfig = {
     MyApp,
     LoginPage,
     SignupPage,
-    CategoriesPage
+    CategoriesPage,
+    UploadItemPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,8 @@ export const firebaseConfig = {
     MyApp,
     LoginPage,
     SignupPage,
-    CategoriesPage
+    CategoriesPage,
+    UploadItemPage
   ],
   providers: [
     StatusBar,
