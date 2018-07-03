@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
+  getAccessoriesProducts, getBooksProducts, getElectronicsProducts, getFurnitureProducts,
   getIsAllProductsLoaded,
   getIsAllProductsLoading,
-  getLoggedInUser,
+  getLoggedInUser, getOtherHouseHoldProducts, getVehiclesProducts,
   RootState
 } from "../reducers";
 import { Store } from "@ngrx/store";
 import { User } from "../models/user.model";
-import { Product } from "../models/product.model";
+import { Categories, Product } from "../models/product.model";
 import { CommonUtils } from "../utils/common.utils";
 import { AddProduct, ListProductComplete } from "../actions/products.action";
 import { LayoutServices } from "../services/layout.services";
@@ -23,14 +24,12 @@ export class ProductRepository {
               private layoutService: LayoutServices) {
     this.store.select(getLoggedInUser).subscribe((user: User) => {
       if (user) {
-        //this.userId = user.id;
-
+        this.userId = user.id;
       }
     });
   }
 
   addProduct(productInfo: any) {
-    let result: boolean;
     let productDetails: Product = {
       ...productInfo,
       userId: this.userId,
@@ -61,5 +60,20 @@ export class ProductRepository {
         }
       });
 
+  }
+
+  getCategoryProducts(category: string) {
+    if (category === Categories.CATEGORY_ACCESSORIES)
+      return this.store.select(getAccessoriesProducts);
+    else if (category === Categories.CATEGORY_BOOKS)
+      return this.store.select(getBooksProducts);
+    else if (category === Categories.CATEGORY_ELECTRONICS)
+      return this.store.select(getElectronicsProducts);
+    else if (category === Categories.CATEGORY_FURNITURE)
+      return this.store.select(getFurnitureProducts);
+    else if (category === Categories.CATEGORY_VEHICLES)
+      return this.store.select(getVehiclesProducts);
+    else
+      return this.store.select(getOtherHouseHoldProducts);
   }
 }

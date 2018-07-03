@@ -12,8 +12,8 @@ import {Component, Input} from '@angular/core';
           </ion-buttons>
         </div>
         <div class="navbar-container__title">
-          <ion-title text-center text-sm>
-            {{toolbarTitle}}
+          <ion-title text-center>
+            {{toolbarTitle | uppercase}}
           </ion-title>
         </div>
       </div>
