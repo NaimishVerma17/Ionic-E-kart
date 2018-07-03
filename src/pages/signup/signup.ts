@@ -4,7 +4,7 @@ import { AuthRepository } from "../../repository/auth.repository";
 import { LayoutServices } from "../../services/layout.services";
 import { User } from "../../models/user.model";
 import { NavController } from "ionic-angular";
-import { AuthService } from "../../services/auth.service";
+import { AppService } from "../../services/app.service";
 
 
 @Component({
@@ -23,7 +23,7 @@ export class SignupPage {
   constructor(private authRepo: AuthRepository,
               private layoutService: LayoutServices,
               private navCtrl: NavController,
-              private authService: AuthService) {
+              private appService: AppService) {
     this.name = new FormControl("", [Validators.required]);
     this.email = new FormControl("", [Validators.required, Validators.email]);
     this.city = new FormControl("", [Validators.required]);
@@ -51,7 +51,7 @@ export class SignupPage {
         city: details.register_city,
         phoneNo: details.register_phone,
       };
-      this.authService.setUserDetails(userDetails).then(status => {
+      this.appService.setUserDetails(userDetails).then(status => {
         this.navCtrl.pop();
       });
 

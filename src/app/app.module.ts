@@ -8,19 +8,19 @@ import {MyApp} from './app.component';
 import {LoginPage} from "../pages/login/login";
 import {StoreModule} from "@ngrx/store";
 import {rootReducer} from "../reducers";
-import {AuthService} from "../services/auth.service";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AuthRepository} from "../repository/auth.repository";
 import {SignupPage} from "../pages/signup/signup";
 import {LayoutServices} from "../services/layout.services";
-import {AppService} from "../services/app.service";
+
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {CategoriesPage} from "../pages/categories/categories";
 import {ComponentsModule} from "../components/components.module";
 import { UploadItemPage } from "../pages/upload-item/upload-item";
 import { ProductRepository } from "../repository/product.repository";
+import { AppService } from "../services/app.service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -62,11 +62,10 @@ export const firebaseConfig = {
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService,
+    AppService,
     AuthRepository,
     ProductRepository,
-    LayoutServices,
-    AppService
+    LayoutServices
   ]
 })
 export class AppModule {

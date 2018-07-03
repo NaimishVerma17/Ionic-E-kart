@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { UploadItemPage } from "../upload-item/upload-item";
+import { ProductRepository } from "../../repository/product.repository";
 
 @Component({
   selector: "page-categories",

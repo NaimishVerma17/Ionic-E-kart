@@ -5,11 +5,11 @@
       <form [formGroup]="formGroup" (ngSubmit)="addProduct()">
         <ion-item>
           <ion-label stacked>Product name:</ion-label>
-          <ion-input type="text" formControlName="product_name"></ion-input>
+          <ion-input type="text" formControlName="name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Category:</ion-label>
-          <ion-select multiple="false" placeholder="Accessories" formControlName="product_category">
+          <ion-select multiple="false" placeholder="Accessories" formControlName="category">
             <ion-option value="accessories">Accessories</ion-option>
             <ion-option value="books">Books</ion-option>
             <ion-option value="electronics">Electronics</ion-option>
@@ -20,11 +20,11 @@
         </ion-item>
         <ion-item>
           <ion-label stacked>Product cost:</ion-label>
-          <ion-input type="number" formControlName="product_cost"></ion-input>
+          <ion-input type="number" formControlName="cost"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Short description:</ion-label>
-          <ion-textarea formControlName="product_description"></ion-textarea>
+          <ion-textarea formControlName="description"></ion-textarea>
         </ion-item>
         <div text-center>
           <button ion-button icon-start outline type="submit" [disabled]="!formGroup.valid">

@@ -7,6 +7,7 @@ import { LoginPage } from "../pages/login/login";
 import { AngularFireAuth } from "angularfire2/auth";
 import { CategoriesPage } from "../pages/categories/categories";
 import { AuthRepository } from "../repository/auth.repository";
+import { ProductRepository } from "../repository/product.repository";
 
 @Component({
   templateUrl: "app.html"
@@ -19,7 +20,8 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private fbService: AngularFireAuth,
-    private authRepo:AuthRepository) {
+    private authRepo: AuthRepository,
+    private productRepo: ProductRepository) {
     platform.ready().then(() => {
       this.fbService.auth.onAuthStateChanged(user => {
         console.log("auth state changed");
@@ -28,12 +30,18 @@ export class MyApp {
         } else {
           this.rootPage = CategoriesPage;
           this.authRepo.saveUser(user.uid);
+          this.initialiseStore();
         }
       });
+
       statusBar.styleDefault();
       splashScreen.hide();
     });
 
+  }
+
+  initialiseStore() {
+    this.productRepo.fetchProducts();
   }
 }
 

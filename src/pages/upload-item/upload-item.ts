@@ -9,21 +9,21 @@ import { ProductRepository } from "../../repository/product.repository";
 export class UploadItemPage {
 
   formGroup: FormGroup;
-  productName: FormControl;
-  productCategory: FormControl;
-  productDescription: FormControl;
-  productCost: FormControl;
+  name: FormControl;
+  category: FormControl;
+  description: FormControl;
+  cost: FormControl;
 
   constructor(private productRepo: ProductRepository) {
-    this.productName = new FormControl("", [Validators.required]);
-    this.productCategory = new FormControl("", [Validators.required]);
-    this.productDescription = new FormControl("", [Validators.required]);
-    this.productCost = new FormControl("", [Validators.required]);
+    this.name = new FormControl("", [Validators.required]);
+    this.category = new FormControl("", [Validators.required]);
+    this.description = new FormControl("", [Validators.required]);
+    this.cost = new FormControl("", [Validators.required]);
     this.formGroup = new FormGroup({
-      "product_name": this.productName,
-      "product_category": this.productCategory,
-      "product_description": this.productDescription,
-      "product_cost": this.productCost
+      "name": this.name,
+      "category": this.category,
+      "description": this.description,
+      "cost": this.cost
     });
   }
 

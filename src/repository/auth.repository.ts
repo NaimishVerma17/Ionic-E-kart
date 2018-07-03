@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
-import { AuthService } from "../services/auth.service";
 import {
   getLoggedInUserLoaded,
   getLoggedInUserLoading,
@@ -12,11 +11,12 @@ import "rxjs/add/operator/take"
 import { Login, LoginComplete, LoginFiled, LogoutSuccess } from "../actions/app.action";
 import { User } from "../models/user.model";
 import { LayoutServices } from "../services/layout.services";
+import { AppService } from "../services/app.service";
 
 
 @Injectable()
 export class AuthRepository {
-  constructor(private authService: AuthService,
+  constructor(private appService: AppService,
               private store: Store<RootState>,
               private layoutService: LayoutServices,) {
   }
@@ -29,9 +29,9 @@ export class AuthRepository {
     combineLatest$.subscribe(status => {
       this.store.dispatch(new Login());
       if (!status) {
-        this.authService.login(loginDetails.email, loginDetails.password)
+        this.appService.login(loginDetails.email, loginDetails.password)
           .then(data => {
-            this.authService.setToken(data.user.refreshToken);
+            this.appService.setToken(data.user.refreshToken);
            this.saveUser(data.user.uid);
           }).catch(e => {
           this.store.dispatch(new LoginFiled());
@@ -43,11 +43,11 @@ export class AuthRepository {
   }
 
   register(userDetails) {
-    return this.authService.register(userDetails.register_email, userDetails.register_password)
+    return this.appService.register(userDetails.register_email, userDetails.register_password)
   }
 
   logout() {
-    this.authService.logout().then(() => {
+    this.appService.logout().then(() => {
       this.store.dispatch(new LogoutSuccess());
     }).catch((e) => {
       this.layoutService.showToast(e.message);
@@ -55,7 +55,8 @@ export class AuthRepository {
   }
 
   saveUser(uid:string){
-    this.authService.getUserDetailRef(uid).on("value", (user) => {
+    console.log("save user");
+    this.appService.getUserDetailRef(uid).on("value", (user) => {
       const userDetails: User = user.val();
       this.store.dispatch(new LoginComplete(userDetails));
     });

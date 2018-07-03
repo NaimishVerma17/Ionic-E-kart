@@ -1,0 +1,83 @@
+[33mcommit 0f05193b3e4b6f4fc07c5518eaa9eb10887c3e26[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Mon Jul 2 02:58:18 2018 +0530
+
+    fex changes
+
+[33mcommit 4ccf385e901870edb0555060169eb68313da844f[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Tue Jun 26 02:23:49 2018 +0530
+
+    categories page ui setup
+
+[33mcommit 5efb6f23026d6e581903ecd4993bfb11c3190dcd[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sun Jun 24 04:01:09 2018 +0530
+
+    few fixes
+
+[33mcommit 0634e01f8c82ae386c33b98ea838698961c27763[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sun Jun 24 03:56:51 2018 +0530
+
+    product store completed
+
+[33mcommit a96dd8ec4b9c794f8b1c351c4881b28c0d4219d6[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sun Jun 24 00:43:41 2018 +0530
+
+    product store setup
+
+[33mcommit fabb956dacd61e947c9a60307255f11304e4f347[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Thu Jun 21 16:38:25 2018 +0530
+
+    auth completed
+
+[33mcommit d2c8be0d44a395a67939dfadb757cf30ec503afb[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Thu Jun 21 02:50:42 2018 +0530
+
+    signup implementation
+
+[33mcommit f61c8a949c3f6a800cbbb96b547ad2c3abb824ff[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Tue Jun 19 00:34:37 2018 +0530
+
+    ui changes
+
+[33mcommit bd4504edcd4897f73b1b0b445b46670a788fe6d1[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Mon Jun 18 14:15:40 2018 +0530
+
+    auth service, repo setup, angular fire added
+
+[33mcommit 5fda2ea3623fefbfb333c4df525c1d3d2d6da525[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sun Jun 17 03:40:41 2018 +0530
+
+    navbar setup
+
+[33mcommit 8019976a682f1161ded8a0f3cf06fd2354422d02[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sun Jun 17 01:53:05 2018 +0530
+
+    app store setup
+
+[33mcommit c82e4cbfa940fded2f0e5fab1bda3556e8681313[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sat Jun 16 23:15:48 2018 +0530
+
+    ngrx added
+
+[33mcommit 6583557a95b0cc1f6e9feb0f8db15f18606d779d[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sat Jun 16 23:03:31 2018 +0530
+
+    directory structure setup
+
+[33mcommit 3c916cf94f9488f307f700e5b41822c17f5ba9f8[m
+Author: naimishverma17 <naimishverma50@gmail.com>
+Date:   Sat Jun 16 22:50:32 2018 +0530
+
+    Initial commit
