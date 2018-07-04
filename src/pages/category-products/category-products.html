@@ -1,0 +1,15 @@
+<ek-toolbar [showMenuIcon]="false" [toolbarTitle]="category"></ek-toolbar>
+
+<ion-content padding margin-top="60px">
+  <div *ngIf="products.length==0">
+    <p>No products available</p>
+  </div>
+
+  <ek-single-product *ngFor="let product of products"
+                     [productImg]="product.imageUrl"
+                     [productName]="product.name"
+                     [productPrice]="product.cost"
+                     (click)="showProduct(product)"
+  >
+  </ek-single-product>
+</ion-content>

@@ -1,0 +1,19 @@
+ek-single-product {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  .product-description {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .product-description__price {
+    position: absolute;
+    bottom: 0;
+    p {
+      color: #32db64;
+    }
+  }
+}

@@ -1,9 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  getAccessoriesProducts, getBooksProducts, getElectronicsProducts, getFurnitureProducts,
+  getAccessoriesProducts,
+  getBooksProducts,
+  getElectronicsProducts,
+  getFurnitureProducts,
   getIsAllProductsLoaded,
   getIsAllProductsLoading,
-  getLoggedInUser, getOtherHouseHoldProducts, getVehiclesProducts,
+  getLoggedInUser,
+  getOtherHouseHoldProducts,
+  getVehiclesProducts,
   RootState
 } from "../reducers";
 import { Store } from "@ngrx/store";
@@ -11,8 +16,9 @@ import { User } from "../models/user.model";
 import { Categories, Product } from "../models/product.model";
 import { CommonUtils } from "../utils/common.utils";
 import { AddProduct, ListProductComplete } from "../actions/products.action";
-import { LayoutServices } from "../services/layout.services";
 import { AppService } from "../services/app.service";
+import { Subject } from "rxjs/Subject";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class ProductRepository {
@@ -20,8 +26,7 @@ export class ProductRepository {
   userId: string;
 
   constructor(private store: Store<RootState>,
-              private appService: AppService,
-              private layoutService: LayoutServices) {
+              private appService: AppService) {
     this.store.select(getLoggedInUser).subscribe((user: User) => {
       if (user) {
         this.userId = user.id;
@@ -30,6 +35,7 @@ export class ProductRepository {
   }
 
   addProduct(productInfo: any) {
+    let result = new Subject<boolean>();
     let productDetails: Product = {
       ...productInfo,
       userId: this.userId,
@@ -37,8 +43,9 @@ export class ProductRepository {
     };
     this.appService.set(productDetails).then(() => {
       this.store.dispatch(new AddProduct(productDetails));
-      this.layoutService.showToast("Product added successfully");
-    }).catch(e => this.layoutService.showToast(e.message));
+      result.next(true);
+    }).catch(e => result.next(false));
+    return result as Observable<boolean>;
   }
 
   fetchProducts() {

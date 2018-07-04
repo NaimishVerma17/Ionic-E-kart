@@ -22,6 +22,7 @@ import { UploadItemPage } from "../pages/upload-item/upload-item";
 import { ProductRepository } from "../repository/product.repository";
 import { AppService } from "../services/app.service";
 import { CategoryProductsPage } from "../pages/category-products/category-products";
+import { ProductDetailsPage } from "../pages/product-details/product-details";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     SignupPage,
     CategoriesPage,
     UploadItemPage,
-    CategoryProductsPage
+    CategoryProductsPage,
+    ProductDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ export const firebaseConfig = {
     SignupPage,
     CategoriesPage,
     UploadItemPage,
-    CategoryProductsPage
+    CategoryProductsPage,
+    ProductDetailsPage
   ],
   providers: [
     StatusBar,
