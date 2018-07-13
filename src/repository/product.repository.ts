@@ -83,4 +83,14 @@ export class ProductRepository {
     else
       return this.store.select(getOtherHouseHoldProducts);
   }
+
+  getUserDetails(uid: string){
+    console.log("Naimish",uid);
+    let userDetails = new Subject<User>();
+    this.appService.getUserDetailRef(uid).on("value", (user) => {
+      userDetails.next(user.val());
+      console.log("Naimish",user.val());
+    });
+    return userDetails as Observable<User>;
+  }
 }

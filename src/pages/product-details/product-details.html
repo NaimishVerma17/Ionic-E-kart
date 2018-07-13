@@ -4,7 +4,7 @@
       <ion-icon name="close"></ion-icon>
     </button>
   </div>
-  <ion-card margin="0">
+  <ion-card>
     <ion-card-content>
       <div>
         <div>
@@ -19,8 +19,29 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <button ion-button full class="purchase-button" (click)="purchaseClicked()">
-    Purchase
-  </button>
-
+  <ion-card>
+    <ion-card-title text-center>
+      Owner's Detail
+    </ion-card-title>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><p>Name</p></ion-col>
+          <ion-col><p>{{user.name}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><p>Email</p></ion-col>
+          <ion-col><p>{{user.email}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><p>City</p></ion-col>
+          <ion-col><p>{{user.city}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><p>Ph. No.</p></ion-col>
+          <ion-col><p>{{user.phoneNo}}</p></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
