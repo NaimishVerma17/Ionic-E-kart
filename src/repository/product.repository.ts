@@ -15,7 +15,12 @@ import { Store } from "@ngrx/store";
 import { User } from "../models/user.model";
 import { Categories, Product } from "../models/product.model";
 import { CommonUtils } from "../utils/common.utils";
-import { AddProduct, DeleteProduct, ListProductComplete, ListProductSent } from "../actions/products.action";
+import {
+  AddProduct,
+  DeleteProduct,
+  ListProductComplete,
+  ListProductSent
+} from "../actions/products.action";
 import { AppService } from "../services/app.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -36,6 +41,9 @@ export class ProductRepository {
   }
 
   addProduct(productInfo: any) {
+    if (!productInfo) {
+      return;
+    }
     let result = new BehaviorSubject<boolean>(false);
     let productDetails: Product = {
       ...productInfo,
@@ -59,12 +67,13 @@ export class ProductRepository {
         if (!status) {
           this.store.dispatch(new ListProductSent());
           this.appService.getProductRef().on("value", products => {
-            console.log(products.val());
-            const productItems = products.val();
-            let productkeys = Object.keys(productItems);
-            let productValues = productkeys.map(key => productItems[key]);
-            console.log(productValues);
-            this.store.dispatch(new ListProductComplete({products: productValues, loggedInUserId: this.userId}));
+            if (products.val()) {
+              const productItems = products.val();
+              let productkeys = Object.keys(productItems);
+              let productValues = productkeys.map(key => productItems[key]);
+              this.store.dispatch(new ListProductComplete({products: productValues, loggedInUserId: this.userId}));
+            }
+
           });
         }
       });
