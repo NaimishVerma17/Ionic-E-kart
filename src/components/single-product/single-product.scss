@@ -13,10 +13,13 @@ ek-single-product {
       }
       display: flex;
       justify-content: space-between;
-      ion-icon {
-        margin-top: 5px;
-        font-size: 2em;
+      button {
+        margin-top: -5px;
+        ion-icon {
+          font-size: 1.5em;
+        }
       }
+
     }
     .product-description__price {
       p {

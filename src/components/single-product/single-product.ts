@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Product } from "../../models/product.model";
 
 @Component({
@@ -17,9 +17,9 @@ import { Product } from "../../models/product.model";
                   <p>{{product.name}}</p>
                 </div>
                 <div *ngIf="showDelete">
-                  <ion-buttons>
+                  <button ion-button clear (click)="deleteProduct()">
                     <ion-icon name="trash"></ion-icon>
-                  </ion-buttons>
+                  </button>
                 </div>
               </div>
               <div class="product-description__price">
@@ -35,4 +35,10 @@ import { Product } from "../../models/product.model";
 export class SingleProductComponent {
   @Input() product: Product;
   @Input() showDelete: boolean;
+  @Output() delete = new EventEmitter<Product>();
+
+  deleteProduct() {
+    console.log("delete");
+    this.delete.emit(this.product);
+  }
 }
