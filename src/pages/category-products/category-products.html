@@ -6,9 +6,8 @@
   </div>
 
   <ek-single-product *ngFor="let product of products"
-                     [productImg]="product.imageUrl"
-                     [productName]="product.name"
-                     [productPrice]="product.cost"
+                     [product]="product"
+                     [showDelete]="false"
                      (click)="showProduct(product)"
   >
   </ek-single-product>

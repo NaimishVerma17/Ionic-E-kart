@@ -7,13 +7,24 @@ ek-single-product {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-  }
-  .product-description__price {
-    position: absolute;
-    bottom: 0;
-    p {
-      color: #32db64;
+    .product-description__name {
+      p {
+        font-size: 18px;
+      }
+      display: flex;
+      justify-content: space-between;
+      ion-icon {
+        margin-top: 5px;
+        font-size: 2em;
+      }
+    }
+    .product-description__price {
+      p {
+        color: #32db64;
+        font-size: 15px;
+        padding-top: 8px;
+      }
     }
   }
+
 }
