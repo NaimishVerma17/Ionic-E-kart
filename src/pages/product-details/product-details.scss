@@ -1,6 +1,8 @@
 page-product-details {
-  .purchase-button {
-    position: absolute;
-    bottom: 0;
+  ion-content{
+    background-image: url("../../assets/imgs/background.jpeg");
+  }
+  p{
+    font-size: 20px !important;
   }
 }

@@ -12,18 +12,15 @@ import { AppService } from "../../services/app.service";
 export class ProductDetailsPage {
   product: Product;
   user: User;
+
   constructor(private navParams: NavParams,
               private viewCtrl: ViewController,
-              private productRepo: ProductRepository,
-              private appService:AppService) {
+              private productRepo: ProductRepository) {
+
     this.product = this.navParams.get("product");
-    // this.productRepo.getUserDetails(this.product.userId).subscribe((user:User) => {
-    //   this.user = user;
-    //   console.log("naimish 3",this.user);
-    // });
-    this.appService.getUserDetailRef(this.product.userId).on("value", (user) => {
-      this.user=user.val();
-      console.log("Naimish",user.val());
+
+    this.productRepo.getUserDetails(this.product.userId).subscribe((user: User) => {
+      this.user = user;
     });
   }
 

@@ -6,7 +6,7 @@ import {
   getFurnitureProducts,
   getIsAllProductsLoaded,
   getIsAllProductsLoading,
-  getLoggedInUser,
+  getLoggedInUser, getLoggedInUserProducts,
   getOtherHouseHoldProducts,
   getVehiclesProducts,
   RootState
@@ -19,6 +19,7 @@ import { AddProduct, ListProductComplete } from "../actions/products.action";
 import { AppService } from "../services/app.service";
 import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class ProductRepository {
@@ -35,7 +36,7 @@ export class ProductRepository {
   }
 
   addProduct(productInfo: any) {
-    let result = new Subject<boolean>();
+    let result = new BehaviorSubject<boolean>(false);
     let productDetails: Product = {
       ...productInfo,
       userId: this.userId,
@@ -62,11 +63,15 @@ export class ProductRepository {
             let productkeys = Object.keys(productItems);
             let productValues = productkeys.map(key => productItems[key]);
             console.log(productValues);
-            this.store.dispatch(new ListProductComplete({ products: productValues, loggedInUserId: this.userId }));
+            this.store.dispatch(new ListProductComplete({products: productValues, loggedInUserId: this.userId}));
           });
         }
       });
 
+  }
+
+  getLoggedInUserProducts(): Observable<Product[]> {
+    return this.store.select(getLoggedInUserProducts);
   }
 
   getCategoryProducts(category: string) {
@@ -84,12 +89,10 @@ export class ProductRepository {
       return this.store.select(getOtherHouseHoldProducts);
   }
 
-  getUserDetails(uid: string){
-    console.log("Naimish",uid);
-    let userDetails = new Subject<User>();
+  getUserDetails(uid: string): Observable<User> {
+    let userDetails = new BehaviorSubject<User>(null);
     this.appService.getUserDetailRef(uid).on("value", (user) => {
-      userDetails.next(user.val());
-      console.log("Naimish",user.val());
+      userDetails.next(user.val() as User);
     });
     return userDetails as Observable<User>;
   }
