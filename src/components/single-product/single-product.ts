@@ -38,7 +38,6 @@ export class SingleProductComponent {
   @Output() delete = new EventEmitter<Product>();
 
   deleteProduct() {
-    console.log("delete");
     this.delete.emit(this.product);
   }
 }

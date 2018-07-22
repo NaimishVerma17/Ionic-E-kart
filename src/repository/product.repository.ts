@@ -15,11 +15,11 @@ import { Store } from "@ngrx/store";
 import { User } from "../models/user.model";
 import { Categories, Product } from "../models/product.model";
 import { CommonUtils } from "../utils/common.utils";
-import { AddProduct, ListProductComplete } from "../actions/products.action";
+import { AddProduct, DeleteProduct, ListProductComplete, ListProductSent } from "../actions/products.action";
 import { AppService } from "../services/app.service";
-import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class ProductRepository {
@@ -57,6 +57,7 @@ export class ProductRepository {
       .take(1)
       .subscribe(status => {
         if (!status) {
+          this.store.dispatch(new ListProductSent());
           this.appService.getProductRef().on("value", products => {
             console.log(products.val());
             const productItems = products.val();
@@ -96,4 +97,14 @@ export class ProductRepository {
     });
     return userDetails as Observable<User>;
   }
+
+  deleteProduct(prod: Product): Observable<boolean> {
+    let res = new Subject<boolean>();
+    this.appService.getProductRef().child(prod.id).remove().then(s => {
+      this.store.dispatch(new DeleteProduct(prod));
+      res.next(true);
+    }).catch(e => res.next(false));
+    return res as Observable<boolean>
+  }
+
 }

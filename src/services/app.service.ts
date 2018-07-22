@@ -25,6 +25,9 @@ export class AppService {
   }
 
   getUserDetailRef(userId) {
+    if (!userId) {
+      return;
+    }
     return this.angularFireDb.database.ref("/userProfile/" + userId);
   }
 
@@ -48,7 +51,8 @@ export class AppService {
     return this.angularFireDb.database.ref("/products/" + product.id).set(product);
   }
 
-  getProductRef(){
+  getProductRef() {
     return this.angularFireDb.database.ref("/products/");
   }
+
 }
