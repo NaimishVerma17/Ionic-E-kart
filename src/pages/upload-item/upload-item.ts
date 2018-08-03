@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProductRepository } from "../../repository/product.repository";
 import { LayoutServices } from "../../services/layout.services";
+import { Camera, CameraOptions } from "@ionic-native/camera";
 
 @Component({
   selector: "page-upload-item",
@@ -14,8 +15,9 @@ export class UploadItemPage {
   category: FormControl;
   description: FormControl;
   cost: FormControl;
+  imageUrl;
 
-  constructor(private productRepo: ProductRepository, private layoutService: LayoutServices) {
+  constructor(private productRepo: ProductRepository, private layoutService: LayoutServices, private camera:Camera) {
     this.name = new FormControl("", [Validators.required]);
     this.category = new FormControl("", [Validators.required]);
     this.description = new FormControl("", [Validators.required]);
@@ -38,5 +40,21 @@ export class UploadItemPage {
         this.layoutService.showToast("Something went wrong, please try again!");
       }
     });
+  }
+
+  takePicture() {
+    const cameraConfig: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      allowEdit: true,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum: true
+    };
+    this.camera.getPicture(cameraConfig).then(imageData => {
+      this.imageUrl=imageData;
+      this.productRepo.uploadProductImage(imageData);
+      console.log(imageData);
+    })
   }
 }

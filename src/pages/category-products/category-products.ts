@@ -22,13 +22,15 @@ export class CategoryProductsPage {
   }
 
   fetchProducts() {
-    this.productRepo.getCategoryProducts(this.category).subscribe((products: Product[]) => {
-      this.products = products;
-    });
+    this.productRepo.getCategoryProducts(this.category)
+      .filter(products => !!products)
+      .subscribe((products: Product[]) => {
+        this.products = products;
+      });
   }
 
   showProduct(product: Product) {
-    const productModal = this.modalCtrl.create(ProductDetailsPage,{product:product});
+    const productModal = this.modalCtrl.create(ProductDetailsPage, {product: product});
     productModal.present();
   }
 }

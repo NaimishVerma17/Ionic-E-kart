@@ -26,6 +26,16 @@
           <ion-label stacked>Short description:</ion-label>
           <ion-textarea formControlName="description"></ion-textarea>
         </ion-item>
+        <ion-item>
+          <ion-row>
+            <ion-col col-5 text-left>
+              <button class="take-picture" ion-button clear type="button" (click)="takePicture()">Upload Image</button>
+            </ion-col>
+            <ion-col col-7 *ngIf="imageUrl">
+              <img [src]="imageUrl" alt="No image to display"/>
+            </ion-col>
+          </ion-row>
+        </ion-item>
         <div text-center>
           <button ion-button icon-start outline type="submit" [disabled]="!formGroup.valid">
             <ion-icon name="checkmark-circle"></ion-icon>

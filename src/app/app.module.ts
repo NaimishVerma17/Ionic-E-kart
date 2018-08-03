@@ -25,6 +25,8 @@ import { CategoryProductsPage } from "../pages/category-products/category-produc
 import { ProductDetailsPage } from "../pages/product-details/product-details";
 import { ProfilePage } from "../pages/profile/profile";
 import { UploadedItemsPage } from "../pages/uploaded-items/uploaded-items";
+import { Camera } from "@ionic-native/camera";
+import { AngularFireStorageModule } from "angularfire2/storage";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD_caXvfUPN8xiSLLRkpmcR4IdicPzq0ac",
@@ -55,7 +57,8 @@ export const firebaseConfig = {
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -77,7 +80,8 @@ export const firebaseConfig = {
     AppService,
     AuthRepository,
     ProductRepository,
-    LayoutServices
+    LayoutServices,
+    Camera
   ]
 })
 export class AppModule {

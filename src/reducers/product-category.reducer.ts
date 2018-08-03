@@ -1,6 +1,6 @@
-import {Action} from "../actions";
+import { Action } from "../actions";
 import * as ProductsAction from "../actions/products.action"
-import {Categories, Product} from "../models/product.model";
+import { Categories, Product } from "../models/product.model";
 
 export interface ProductCategoryState {
   loggedInUserProducts: string[];
@@ -48,17 +48,30 @@ export function productCategoryReducer(state: ProductCategoryState = initialStat
 
       if (products) {
         products.forEach((product: Product) => {
-          if (product.category === Categories.CATEGORY_ELECTRONICS)
-            electronicProductsId.push(product.id);
-          else if (product.category === Categories.CATEGORY_FURNITURE)
-            furnitureProductsId.push(product.id);
-          else if (product.category === Categories.CATEGORY_VEHICLES)
-            vehiclesProductsId.push(product.id);
-          else if (product.category === Categories.CATEGORY_ACCESSORIES)
-            accessoriesProductsId.push(product.id);
-          else if (product.category === Categories.CATEGORY_BOOKS)
-            booksProductsId.push(product.id);
-          else otherHouseHoldProductsId.push(product.id);
+          switch (product.category) {
+            case Categories.CATEGORY_ELECTRONICS:
+              electronicProductsId.push(product.id);
+              break;
+
+            case Categories.CATEGORY_FURNITURE:
+              furnitureProductsId.push(product.id);
+              break;
+
+            case Categories.CATEGORY_VEHICLES:
+              vehiclesProductsId.push(product.id);
+              break;
+
+            case Categories.CATEGORY_ACCESSORIES:
+              accessoriesProductsId.push(product.id);
+              break;
+
+            case Categories.CATEGORY_BOOKS:
+              booksProductsId.push(product.id);
+              break;
+
+            default:
+              otherHouseHoldProductsId.push(product.id);
+          }
         });
       }
       loggedInUserProductsId = products

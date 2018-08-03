@@ -1,5 +1,12 @@
 page-upload-item {
-ion-textarea{
-  height: 90px;
-}
+  ion-textarea {
+    height: 90px;
+  }
+  .take-picture {
+    padding: 0;
+    span {
+      font-size: 12px;
+    }
+  }
+
 }

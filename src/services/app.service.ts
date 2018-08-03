@@ -3,11 +3,13 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from "angularfire2/database";
 import { User } from "../models/user.model";
 import { Product } from "../models/product.model";
+import { AngularFireStorage } from "angularfire2/storage";
 
 @Injectable()
 export class AppService {
   constructor(private fbAuth: AngularFireAuth,
-              private angularFireDb: AngularFireDatabase) {
+              private angularFireDb: AngularFireDatabase,
+              private angularFireStorage:AngularFireStorage) {
 
   }
 
@@ -22,6 +24,13 @@ export class AppService {
   setUserDetails(userDetails: User): Promise<any> {
     console.log(userDetails);
     return this.getUserDetailRef(userDetails.id).set(userDetails);
+  }
+
+  uploadProductImage(file:any,uniqueId:string){
+    console.log("InService");
+    this.angularFireStorage.ref("product-images/"+uniqueId).put(file).then(snapShot =>{
+      console.log("Path",snapShot);
+    })
   }
 
   getUserDetailRef(userId) {

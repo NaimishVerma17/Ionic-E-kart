@@ -32,7 +32,7 @@ export class ProductRepository {
   userId: string;
 
   constructor(private store: Store<RootState>,
-              private appService: AppService) {
+              private appService: AppService,) {
     this.store.select(getLoggedInUser).subscribe((user: User) => {
       if (user) {
         this.userId = user.id;
@@ -84,19 +84,34 @@ export class ProductRepository {
     return this.store.select(getLoggedInUserProducts);
   }
 
-  getCategoryProducts(category: string) {
-    if (category === Categories.CATEGORY_ACCESSORIES)
-      return this.store.select(getAccessoriesProducts);
-    else if (category === Categories.CATEGORY_BOOKS)
-      return this.store.select(getBooksProducts);
-    else if (category === Categories.CATEGORY_ELECTRONICS)
-      return this.store.select(getElectronicsProducts);
-    else if (category === Categories.CATEGORY_FURNITURE)
-      return this.store.select(getFurnitureProducts);
-    else if (category === Categories.CATEGORY_VEHICLES)
-      return this.store.select(getVehiclesProducts);
-    else
-      return this.store.select(getOtherHouseHoldProducts);
+  getCategoryProducts(category: string): Observable<Product[]> {
+    if (!category) {
+      return;
+    }
+
+    switch (category) {
+      case  Categories.CATEGORY_ACCESSORIES:
+        return this.store.select(getAccessoriesProducts);
+
+      case  Categories.CATEGORY_BOOKS:
+        return this.store.select(getBooksProducts);
+
+      case Categories.CATEGORY_ELECTRONICS:
+        return this.store.select(getElectronicsProducts);
+
+      case Categories.CATEGORY_FURNITURE:
+        return this.store.select(getFurnitureProducts);
+
+      case Categories.CATEGORY_VEHICLES:
+        return this.store.select(getVehiclesProducts);
+
+      case Categories.CATEGORY_OTHER_HOUSEHOLDS:
+        return this.store.select(getOtherHouseHoldProducts);
+
+      default:
+        return Observable.empty<Product[]>();
+
+    }
   }
 
   getUserDetails(uid: string): Observable<User> {
@@ -114,6 +129,15 @@ export class ProductRepository {
       res.next(true);
     }).catch(e => res.next(false));
     return res as Observable<boolean>
+  }
+
+  uploadProductImage(filePath: any) {
+    if (!filePath) {
+      console.log("no url");
+      return;
+    }
+    console.log("in repo");
+    this.appService.uploadProductImage(filePath, CommonUtils.generateRandomId(5));
   }
 
 }
