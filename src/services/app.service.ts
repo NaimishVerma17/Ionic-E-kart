@@ -28,9 +28,7 @@ export class AppService {
 
   uploadProductImage(file:any,uniqueId:string){
     console.log("InService");
-    this.angularFireStorage.ref("product-images/"+uniqueId).put(file).then(snapShot =>{
-      console.log("Path",snapShot);
-    })
+    return this.angularFireStorage.ref("product-images/"+uniqueId).put(file);
   }
 
   getUserDetailRef(userId) {

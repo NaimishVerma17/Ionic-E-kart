@@ -53,7 +53,10 @@ export class UploadItemPage {
     };
     this.camera.getPicture(cameraConfig).then(imageData => {
       this.imageUrl=imageData;
-      this.productRepo.uploadProductImage(imageData);
+      console.log(imageData);
+      this.productRepo.uploadProductImage(imageData).subscribe(url =>{
+        this.imageUrl=url;
+      });
       console.log(imageData);
     })
   }

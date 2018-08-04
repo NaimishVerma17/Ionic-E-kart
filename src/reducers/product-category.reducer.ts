@@ -99,6 +99,8 @@ export function productCategoryReducer(state: ProductCategoryState = initialStat
       const productId = product.id;
       const savedIds = state[productCategory];
       const loggedInUserProductIds = state.loggedInUserProducts;
+      console.log(savedIds);
+      console.log([...savedIds, productId]);
 
       return {
         ...state,

@@ -30,6 +30,7 @@ import { Subject } from "rxjs/Subject";
 export class ProductRepository {
 
   userId: string;
+  productsInitialised = false;
 
   constructor(private store: Store<RootState>,
               private appService: AppService,) {
@@ -44,7 +45,7 @@ export class ProductRepository {
     if (!productInfo) {
       return;
     }
-    let result = new BehaviorSubject<boolean>(false);
+    let result = new Subject<boolean>();
     let productDetails: Product = {
       ...productInfo,
       userId: this.userId,
@@ -53,7 +54,10 @@ export class ProductRepository {
     this.appService.set(productDetails).then(() => {
       this.store.dispatch(new AddProduct(productDetails));
       result.next(true);
-    }).catch(e => result.next(false));
+    }).catch(e => {
+        result.next(false)
+      }
+    );
     return result as Observable<boolean>;
   }
 
@@ -67,7 +71,8 @@ export class ProductRepository {
         if (!status) {
           this.store.dispatch(new ListProductSent());
           this.appService.getProductRef().on("value", products => {
-            if (products.val()) {
+            if (products.val() && !this.productsInitialised) {
+              this.productsInitialised = true;
               const productItems = products.val();
               let productkeys = Object.keys(productItems);
               let productValues = productkeys.map(key => productItems[key]);
@@ -132,12 +137,19 @@ export class ProductRepository {
   }
 
   uploadProductImage(filePath: any) {
+    let result = new Subject<string>();
     if (!filePath) {
       console.log("no url");
       return;
     }
     console.log("in repo");
-    this.appService.uploadProductImage(filePath, CommonUtils.generateRandomId(5));
+    this.appService.uploadProductImage(filePath, CommonUtils.generateRandomId(5)).then(snapShot => {
+      snapShot.ref.getDownloadURL().then(url => {
+        let downloadUrl = url ? url : "";
+        result.next(downloadUrl);
+      });
+    });
+    return result.asObservable();
   }
 
 }

@@ -29,7 +29,7 @@ export function productReducer(state: ProductState = initialState, action: Actio
     case ProductsAction.DELETE_PRODUCT: {
       const product = action.payload;
       const productId = product.id;
-      productAdapter.removeOne(productId, state);
+      return productAdapter.removeOne(productId, state);
     }
 
     default :

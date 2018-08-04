@@ -8,7 +8,7 @@ import { Product } from "../../models/product.model";
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <img src="../../assets/imgs/category-book.jpeg">
+            <img [src]="product.imageUrl">
           </ion-col>
           <ion-col col-8>
             <div class="product-description">
