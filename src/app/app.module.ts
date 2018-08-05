@@ -23,7 +23,6 @@ import { ProductRepository } from "../repository/product.repository";
 import { AppService } from "../services/app.service";
 import { CategoryProductsPage } from "../pages/category-products/category-products";
 import { ProductDetailsPage } from "../pages/product-details/product-details";
-import { ProfilePage } from "../pages/profile/profile";
 import { UploadedItemsPage } from "../pages/uploaded-items/uploaded-items";
 import { Camera } from "@ionic-native/camera";
 import { AngularFireStorageModule } from "angularfire2/storage";
@@ -46,7 +45,6 @@ export const firebaseConfig = {
     UploadItemPage,
     CategoryProductsPage,
     ProductDetailsPage,
-    ProfilePage,
     UploadedItemsPage
   ],
   imports: [
@@ -69,7 +67,6 @@ export const firebaseConfig = {
     UploadItemPage,
     CategoryProductsPage,
     ProductDetailsPage,
-    ProfilePage,
     UploadedItemsPage
   ],
   providers: [

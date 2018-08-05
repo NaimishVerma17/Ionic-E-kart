@@ -48,6 +48,7 @@ export class AuthRepository {
 
   logout() {
     this.appService.logout().then(() => {
+      this.appService.removeToken();
       this.store.dispatch(new LogoutSuccess());
     }).catch((e) => {
       this.layoutService.showToast(e.message);
@@ -60,6 +61,10 @@ export class AuthRepository {
       const userDetails: User = user.val();
       this.store.dispatch(new LoginComplete(userDetails));
     });
+  }
+
+  getAuthToken(){
+    return this.appService.getToken();
   }
 }
 

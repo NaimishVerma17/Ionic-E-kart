@@ -8,7 +8,6 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { CategoriesPage } from "../pages/categories/categories";
 import { AuthRepository } from "../repository/auth.repository";
 import { ProductRepository } from "../repository/product.repository";
-import { ProfilePage } from "../pages/profile/profile";
 import { UploadedItemsPage } from "../pages/uploaded-items/uploaded-items";
 
 @Component({
@@ -16,20 +15,22 @@ import { UploadedItemsPage } from "../pages/uploaded-items/uploaded-items";
 })
 export class MyApp {
   categoryPage: any = CategoriesPage;
-  profilePage: any = ProfilePage;
   uploadedItemsPage: any = UploadedItemsPage;
   loginPage: any = LoginPage;
-  @ViewChild("content") nav:NavController;
+  @ViewChild("content") nav: NavController;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private menuCtrl:MenuController,
+    private menuCtrl: MenuController,
     private fbService: AngularFireAuth,
     private authRepo: AuthRepository,
     private productRepo: ProductRepository) {
     platform.ready().then(() => {
+      if (!this.authRepo.getAuthToken()) {
+        this.categoryPage = this.loginPage;
+      }
       this.fbService.auth.onAuthStateChanged(user => {
         console.log("auth state changed");
         if (!user) {
@@ -51,8 +52,14 @@ export class MyApp {
     this.productRepo.fetchProducts();
   }
 
-  changeRoot(page:any){
+  changeRoot(page: any) {
     this.nav.setRoot(page);
+    this.menuCtrl.close();
+  }
+
+  logout() {
+    this.authRepo.logout();
+    this.nav.setRoot(this.loginPage);
     this.menuCtrl.close();
   }
 }
