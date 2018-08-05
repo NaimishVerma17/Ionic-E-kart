@@ -17,7 +17,7 @@ export class UploadItemPage {
   cost: FormControl;
   imageUrl;
 
-  constructor(private productRepo: ProductRepository, private layoutService: LayoutServices, private camera:Camera) {
+  constructor(private productRepo: ProductRepository, private layoutService: LayoutServices, private camera: Camera) {
     this.name = new FormControl("", [Validators.required]);
     this.category = new FormControl("", [Validators.required]);
     this.description = new FormControl("", [Validators.required]);
@@ -32,7 +32,11 @@ export class UploadItemPage {
 
   addProduct() {
     console.log(this.formGroup.value);
-    this.productRepo.addProduct(this.formGroup.value).subscribe(status => {
+    let product = {
+      ...this.formGroup.value,
+      imageUrl: this.imageUrl
+    };
+    this.productRepo.addProduct(product).subscribe(status => {
       if (status) {
         this.layoutService.showToast("Product added successfully!");
         this.formGroup.reset();
@@ -45,19 +49,19 @@ export class UploadItemPage {
   takePicture() {
     const cameraConfig: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum: true
     };
     this.camera.getPicture(cameraConfig).then(imageData => {
-      this.imageUrl=imageData;
+
       console.log(imageData);
-      this.productRepo.uploadProductImage(imageData).subscribe(url =>{
-        this.imageUrl=url;
+      this.productRepo.uploadProductImage(imageData).subscribe(url => {
+        console.log("imageurl",url);
+        this.imageUrl = url;
       });
-      console.log(imageData);
     })
   }
 }

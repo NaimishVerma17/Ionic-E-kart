@@ -5,7 +5,7 @@ export interface Product {
   cost: number;
   category: Categories;
   description: string;
-  imageUrl?: string
+  imageUrl: string
 }
 
 export enum Categories {
