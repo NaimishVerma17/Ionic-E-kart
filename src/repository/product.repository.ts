@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   getAccessoriesProducts,
   getBooksProducts,
@@ -10,21 +10,21 @@ import {
   getOtherHouseHoldProducts,
   getVehiclesProducts,
   RootState
-} from "../reducers";
-import { Store } from "@ngrx/store";
-import { User } from "../models/user.model";
-import { Categories, Product } from "../models/product.model";
-import { CommonUtils } from "../utils/common.utils";
+} from '../reducers';
+import { Store } from '@ngrx/store';
+import { User } from '../models/user.model';
+import { Categories, Product } from '../models/product.model';
+import { CommonUtils } from '../utils/common.utils';
 import {
   AddProduct,
   DeleteProduct,
   ListProductComplete,
   ListProductSent
-} from "../actions/products.action";
-import { AppService } from "../services/app.service";
-import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { Subject } from "rxjs/Subject";
+} from '../actions/products.action';
+import { AppService } from '../services/app.service';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ProductRepository {
@@ -70,7 +70,7 @@ export class ProductRepository {
       .subscribe(status => {
         if (!status) {
           this.store.dispatch(new ListProductSent());
-          this.appService.getProductRef().on("value", products => {
+          this.appService.getProductRef().on('value', products => {
             if (products.val() && !this.productsInitialised) {
               this.productsInitialised = true;
               const productItems = products.val();
@@ -121,7 +121,7 @@ export class ProductRepository {
 
   getUserDetails(uid: string): Observable<User> {
     let userDetails = new BehaviorSubject<User>(null);
-    this.appService.getUserDetailRef(uid).on("value", (user) => {
+    this.appService.getUserDetailRef(uid).on('value', (user) => {
       userDetails.next(user.val() as User);
     });
     return userDetails as Observable<User>;
@@ -139,13 +139,13 @@ export class ProductRepository {
   uploadProductImage(filePath: any) {
     let result = new Subject<string>();
     if (!filePath) {
-      console.log("no url");
+      console.log('no url');
       return;
     }
-    console.log("in repo");
+    console.log('in repo');
     this.appService.uploadProductImage(filePath, CommonUtils.generateRandomId(5)).then(snapShot => {
       snapShot.ref.getDownloadURL().then(url => {
-        let downloadUrl = url ? url : "";
+        let downloadUrl = url ? url : '';
         result.next(downloadUrl);
       });
     });

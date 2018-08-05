@@ -1,17 +1,17 @@
-<ek-toolbar [showMenuIcon]="true" toolbarTitle="Categories"></ek-toolbar>
+<ek-toolbar [showMenuIcon]='true' toolbarTitle='Categories'></ek-toolbar>
 
-<ion-content padding margin-top="50px">
-  <div *ngFor="let category of categories">
+<ion-content padding margin-top='50px'>
+  <div *ngFor='let category of categories'>
     <ek-single-category
-      [categoryTitle]="category.title"
-      [categoryDescription]="category.description"
-      [categoryImageUrl]="category.imgUrl"
-      (visit)="visitCategory($event)"
+      [categoryTitle]='category.title'
+      [categoryDescription]='category.description'
+      [categoryImageUrl]='category.imgUrl'
+      (visit)='visitCategory($event)'
     ></ek-single-category>
   </div>
   <ion-fab right bottom padding >
-    <button ion-fab (click)="openUploadItem()" >
-      <ion-icon name="add"></ion-icon>
+    <button ion-fab (click)='openUploadItem()' >
+      <ion-icon name='add'></ion-icon>
     </button>
   </ion-fab>
 

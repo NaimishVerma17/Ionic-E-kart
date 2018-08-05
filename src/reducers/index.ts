@@ -5,9 +5,9 @@ import {
   _getLoggedInUserLoading,
   appReducer,
   AppState
-} from "./app.reducer";
-import { ActionReducerMap, createSelector } from "@ngrx/store"
-import { productReducer, ProductState, productAdapter } from "./product.reducer";
+} from './app.reducer';
+import { ActionReducerMap, createSelector } from '@ngrx/store'
+import { productReducer, ProductState, productAdapter } from './product.reducer';
 import {
   _getAccessoriesProductIds,
   _getBooksProductIds,
@@ -20,7 +20,7 @@ import {
   _getVehiclesProductIds,
   productCategoryReducer,
   ProductCategoryState
-} from "./product-category.reducer";
+} from './product-category.reducer';
 
 
 export interface RootState {

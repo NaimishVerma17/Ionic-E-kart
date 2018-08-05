@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Product } from "../../models/product.model";
-import { ProductRepository } from "../../repository/product.repository";
-import { LayoutServices } from "../../services/layout.services";
+import { Product } from '../../models/product.model';
+import { ProductRepository } from '../../repository/product.repository';
+import { LayoutServices } from '../../services/layout.services';
 
 
 @Component({
@@ -25,9 +25,9 @@ export class UploadedItemsPage {
     console.log(product);
     this.productRepo.deleteProduct(product).subscribe(status => {
       if (status)
-        this.layoutService.showToast("Product deleted succesfully");
+        this.layoutService.showToast('Product deleted succesfully');
       else
-        this.layoutService.showToast("Product deletion failed");
+        this.layoutService.showToast('Product deletion failed');
     })
   }
 

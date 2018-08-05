@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]='content'>
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -6,17 +6,17 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item (click)="changeRoot(categoryPage)">
+      <button ion-item (click)='changeRoot(categoryPage)'>
         Home
       </button>
-      <button ion-item (click)="changeRoot(uploadedItemsPage)">
+      <button ion-item (click)='changeRoot(uploadedItemsPage)'>
         Your Products
       </button>
-      <button ion-item (click)="logout()">
+      <button ion-item (click)='logout()'>
         Logout
       </button>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<ion-nav #content [root]="categoryPage"></ion-nav>
+<ion-nav #content [root]='categoryPage'></ion-nav>

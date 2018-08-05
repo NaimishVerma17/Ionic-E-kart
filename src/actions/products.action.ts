@@ -1,5 +1,5 @@
-import {Action} from "./index";
-import {Product} from "../models/product.model";
+import {Action} from './index';
+import {Product} from '../models/product.model';
 
 export const ADD_PRODUCT = '[Product] Add Product';
 export const DELETE_PRODUCT = '[Product] Delete Product';

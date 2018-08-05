@@ -1,12 +1,12 @@
-import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ProductRepository } from "../../repository/product.repository";
-import { LayoutServices } from "../../services/layout.services";
-import { Camera, CameraOptions } from "@ionic-native/camera";
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductRepository } from '../../repository/product.repository';
+import { LayoutServices } from '../../services/layout.services';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
-  selector: "page-upload-item",
-  templateUrl: "upload-item.html",
+  selector: 'page-upload-item',
+  templateUrl: 'upload-item.html',
 })
 export class UploadItemPage {
 
@@ -18,15 +18,15 @@ export class UploadItemPage {
   imageUrl;
 
   constructor(private productRepo: ProductRepository, private layoutService: LayoutServices, private camera: Camera) {
-    this.name = new FormControl("", [Validators.required]);
-    this.category = new FormControl("", [Validators.required]);
-    this.description = new FormControl("", [Validators.required]);
-    this.cost = new FormControl("", [Validators.required]);
+    this.name = new FormControl('', [Validators.required]);
+    this.category = new FormControl('', [Validators.required]);
+    this.description = new FormControl('', [Validators.required]);
+    this.cost = new FormControl('', [Validators.required]);
     this.formGroup = new FormGroup({
-      "name": this.name,
-      "category": this.category,
-      "description": this.description,
-      "cost": this.cost
+      'name': this.name,
+      'category': this.category,
+      'description': this.description,
+      'cost': this.cost
     });
   }
 
@@ -38,10 +38,10 @@ export class UploadItemPage {
     };
     this.productRepo.addProduct(product).subscribe(status => {
       if (status) {
-        this.layoutService.showToast("Product added successfully!");
+        this.layoutService.showToast('Product added successfully!');
         this.formGroup.reset();
       } else {
-        this.layoutService.showToast("Something went wrong, please try again!");
+        this.layoutService.showToast('Something went wrong, please try again!');
       }
     });
   }
@@ -59,7 +59,7 @@ export class UploadItemPage {
 
       console.log(imageData);
       this.productRepo.uploadProductImage(imageData).subscribe(url => {
-        console.log("imageurl",url);
+        console.log('imageurl',url);
         this.imageUrl = url;
       });
     })

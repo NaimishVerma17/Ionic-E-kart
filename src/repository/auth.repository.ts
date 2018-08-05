@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import {
   getLoggedInUserLoaded,
   getLoggedInUserLoading,
   RootState
-} from "../reducers";
-import "rxjs/add/operator/combineLatest"
-import "rxjs/add/operator/take"
-import { Login, LoginComplete, LoginFiled, LogoutSuccess } from "../actions/app.action";
-import { User } from "../models/user.model";
-import { LayoutServices } from "../services/layout.services";
-import { AppService } from "../services/app.service";
+} from '../reducers';
+import 'rxjs/add/operator/combineLatest'
+import 'rxjs/add/operator/take'
+import { Login, LoginComplete, LoginFiled, LogoutSuccess } from '../actions/app.action';
+import { User } from '../models/user.model';
+import { LayoutServices } from '../services/layout.services';
+import { AppService } from '../services/app.service';
 
 
 @Injectable()
@@ -56,8 +56,8 @@ export class AuthRepository {
   }
 
   saveUser(uid:string){
-    console.log("save user");
-    this.appService.getUserDetailRef(uid).on("value", (user) => {
+    console.log('save user');
+    this.appService.getUserDetailRef(uid).on('value', (user) => {
       const userDetails: User = user.val();
       this.store.dispatch(new LoginComplete(userDetails));
     });

@@ -1,13 +1,13 @@
-import { Component } from "@angular/core";
-import { ModalController, NavController, NavParams } from "ionic-angular";
-import { ProductRepository } from "../../repository/product.repository";
-import { Product } from "../../models/product.model";
-import { ProductDetailsPage } from "../product-details/product-details";
+import { Component } from '@angular/core';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ProductRepository } from '../../repository/product.repository';
+import { Product } from '../../models/product.model';
+import { ProductDetailsPage } from '../product-details/product-details';
 
 
 @Component({
-  selector: "page-category-products",
-  templateUrl: "category-products.html",
+  selector: 'page-category-products',
+  templateUrl: 'category-products.html',
 })
 export class CategoryProductsPage {
 
@@ -17,7 +17,7 @@ export class CategoryProductsPage {
   constructor(private navParams: NavParams,
               private productRepo: ProductRepository,
               private modalCtrl: ModalController) {
-    this.category = this.navParams.get("category");
+    this.category = this.navParams.get('category');
     this.fetchProducts();
   }
 

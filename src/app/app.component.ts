@@ -1,23 +1,23 @@
-import { Component, ViewChild } from "@angular/core";
-import { MenuController, NavController, Platform } from "ionic-angular";
-import { StatusBar } from "@ionic-native/status-bar";
-import { SplashScreen } from "@ionic-native/splash-screen";
+import { Component, ViewChild } from '@angular/core';
+import { MenuController, NavController, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "../pages/login/login";
-import { AngularFireAuth } from "angularfire2/auth";
-import { CategoriesPage } from "../pages/categories/categories";
-import { AuthRepository } from "../repository/auth.repository";
-import { ProductRepository } from "../repository/product.repository";
-import { UploadedItemsPage } from "../pages/uploaded-items/uploaded-items";
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { CategoriesPage } from '../pages/categories/categories';
+import { AuthRepository } from '../repository/auth.repository';
+import { ProductRepository } from '../repository/product.repository';
+import { UploadedItemsPage } from '../pages/uploaded-items/uploaded-items';
 
 @Component({
-  templateUrl: "app.html"
+  templateUrl: 'app.html'
 })
 export class MyApp {
   categoryPage: any = CategoriesPage;
   uploadedItemsPage: any = UploadedItemsPage;
   loginPage: any = LoginPage;
-  @ViewChild("content") nav: NavController;
+  @ViewChild('content') nav: NavController;
 
   constructor(
     platform: Platform,
@@ -32,7 +32,7 @@ export class MyApp {
         this.categoryPage = this.loginPage;
       }
       this.fbService.auth.onAuthStateChanged(user => {
-        console.log("auth state changed");
+        console.log('auth state changed');
         if (!user) {
           this.categoryPage = this.loginPage;
         } else {

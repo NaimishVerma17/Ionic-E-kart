@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {AuthRepository} from "../../repository/auth.repository";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SignupPage} from "../signup/signup";
+import {AuthRepository} from '../../repository/auth.repository';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SignupPage} from '../signup/signup';
 
 @Component({
   selector: 'page-login',
@@ -29,7 +29,7 @@ export class LoginPage {
   }
 
   registerUser(){
-    console.log("signup");
+    console.log('signup');
     this.navCtrl.push(SignupPage);
   }
 }

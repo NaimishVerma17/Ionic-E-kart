@@ -1,28 +1,28 @@
-<ek-toolbar [showMenuIcon]="false" toolbarTitle="LOGIN"></ek-toolbar>
-<ion-content padding margin-top="50px">
+<ek-toolbar [showMenuIcon]='false' toolbarTitle='LOGIN'></ek-toolbar>
+<ion-content padding margin-top='50px'>
   <ion-card>
     <ion-card-header text-center>
       Login
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <form [formGroup]="formGroup" (ngSubmit)="formGroup.valid && loginUser()">
+        <form [formGroup]='formGroup' (ngSubmit)='formGroup.valid && loginUser()'>
           <div>
             <ion-item text-wrap>
               <ion-label floating>Email</ion-label>
-              <ion-input type="text" formControlName="email"></ion-input>
+              <ion-input type='text' formControlName='email'></ion-input>
             </ion-item>
           </div>
           <div>
             <ion-item text-wrap>
               <ion-label floating>Password</ion-label>
-              <ion-input type="password" formControlName="password"></ion-input>
+              <ion-input type='password' formControlName='password'></ion-input>
             </ion-item>
           </div>
           <div>
             <ion-item text-center>
               <ion-buttons >
-                <button ion-button round small type="submit">Login</button>
+                <button ion-button round small type='submit'>Login</button>
               </ion-buttons>
             </ion-item>
           </div>
@@ -36,7 +36,7 @@
       <p>or</p>
     </div>
     <div text-center>
-     <button ion-button clear small text-capitalize (click)="registerUser()">Create an account</button>
+     <button ion-button clear small text-capitalize (click)='registerUser()'>Create an account</button>
     </div>
   </div>
 </ion-content>

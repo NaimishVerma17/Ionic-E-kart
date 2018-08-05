@@ -1,44 +1,44 @@
-<ek-toolbar toolbarTitle="Upload Item" [showMenuIcon]="false"></ek-toolbar>
-<ion-content padding margin-top="50px">
+<ek-toolbar toolbarTitle='Upload Item' [showMenuIcon]='false'></ek-toolbar>
+<ion-content padding margin-top='50px'>
   <ion-card padding>
     <ion-list>
-      <form [formGroup]="formGroup" (ngSubmit)="addProduct()">
+      <form [formGroup]='formGroup' (ngSubmit)='addProduct()'>
         <ion-item>
           <ion-label stacked>Product name:</ion-label>
-          <ion-input type="text" formControlName="name"></ion-input>
+          <ion-input type='text' formControlName='name'></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Category:</ion-label>
-          <ion-select multiple="false" placeholder="Accessories" formControlName="category">
-            <ion-option value="accessories">Accessories</ion-option>
-            <ion-option value="books">Books</ion-option>
-            <ion-option value="electronics">Electronics</ion-option>
-            <ion-option value="furniture">Furniture</ion-option>
-            <ion-option value="vehicles">Vehicles</ion-option>
-            <ion-option value="otherHouseHolds">Other house hold</ion-option>
+          <ion-select multiple='false' placeholder='Accessories' formControlName='category'>
+            <ion-option value='accessories'>Accessories</ion-option>
+            <ion-option value='books'>Books</ion-option>
+            <ion-option value='electronics'>Electronics</ion-option>
+            <ion-option value='furniture'>Furniture</ion-option>
+            <ion-option value='vehicles'>Vehicles</ion-option>
+            <ion-option value='otherHouseHolds'>Other house hold</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label stacked>Product cost:</ion-label>
-          <ion-input type="number" formControlName="cost"></ion-input>
+          <ion-input type='number' formControlName='cost'></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Short description:</ion-label>
-          <ion-textarea formControlName="description"></ion-textarea>
+          <ion-textarea formControlName='description'></ion-textarea>
         </ion-item>
         <ion-item>
           <ion-row>
             <ion-col col-5 text-left>
-              <button class="take-picture" ion-button clear type="button" (click)="takePicture()">Upload Image</button>
+              <button class='take-picture' ion-button clear type='button' (click)='takePicture()'>Upload Image</button>
             </ion-col>
-            <ion-col col-7 *ngIf="imageUrl">
-              <img [src]="imageUrl" alt="No image to display"/>
+            <ion-col col-7 *ngIf='imageUrl'>
+              <img [src]='imageUrl' alt='No image to display'/>
             </ion-col>
           </ion-row>
         </ion-item>
         <div text-center>
-          <button ion-button icon-start outline type="submit" [disabled]="!formGroup.valid">
-            <ion-icon name="checkmark-circle"></ion-icon>
+          <button ion-button icon-start outline type='submit' [disabled]='!formGroup.valid'>
+            <ion-icon name='checkmark-circle'></ion-icon>
             Submit
           </button>
         </div>

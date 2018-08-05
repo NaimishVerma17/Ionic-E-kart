@@ -1,6 +1,6 @@
-import { Action } from "../actions";
-import * as ProductsAction from "../actions/products.action"
-import { Categories, Product } from "../models/product.model";
+import { Action } from '../actions';
+import * as ProductsAction from '../actions/products.action'
+import { Categories, Product } from '../models/product.model';
 
 export interface ProductCategoryState {
   loggedInUserProducts: string[];
@@ -93,7 +93,7 @@ export function productCategoryReducer(state: ProductCategoryState = initialStat
     }
 
     case ProductsAction.ADD_PRODUCT: {
-      console.log("add prod action");
+      console.log('add prod action');
       const product: Product = action.payload;
       const productCategory = product.category;
       const productId = product.id;

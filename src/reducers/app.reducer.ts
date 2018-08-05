@@ -1,6 +1,6 @@
-import {User} from "../models/user.model";
+import {User} from '../models/user.model';
 import * as AppActions from '../actions/app.action'
-import {Action} from "../actions";
+import {Action} from '../actions';
 
 export interface AppState {
   loggedInUser: User;

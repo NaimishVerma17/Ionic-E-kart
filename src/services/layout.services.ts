@@ -1,5 +1,5 @@
-import {ToastController} from "ionic-angular";
-import {Injectable} from "@angular/core";
+import {ToastController} from 'ionic-angular';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class LayoutServices {

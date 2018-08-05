@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFireDatabase } from "angularfire2/database";
-import { User } from "../models/user.model";
-import { Product } from "../models/product.model";
-import { AngularFireStorage } from "angularfire2/storage";
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { User } from '../models/user.model';
+import { Product } from '../models/product.model';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Injectable()
 export class AppService {
@@ -27,15 +27,15 @@ export class AppService {
   }
 
   uploadProductImage(file:any,uniqueId:string){
-    console.log("InService");
-    return this.angularFireStorage.ref("product-images/"+uniqueId).putString(file,"base64");
+    console.log('InService');
+    return this.angularFireStorage.ref('product-images/'+uniqueId).putString(file,'base64');
   }
 
   getUserDetailRef(userId) {
     if (!userId) {
       return;
     }
-    return this.angularFireDb.database.ref("/userProfile/" + userId);
+    return this.angularFireDb.database.ref('/userProfile/' + userId);
   }
 
   logout(): Promise<any> {
@@ -43,23 +43,23 @@ export class AppService {
   }
 
   setToken(token: string) {
-    localStorage.setItem("Token", token);
+    localStorage.setItem('Token', token);
   }
 
   getToken(): string {
-    return localStorage.getItem("Token");
+    return localStorage.getItem('Token');
   }
 
   removeToken() {
-    localStorage.removeItem("Token");
+    localStorage.removeItem('Token');
   }
 
   set(product: Product) {
-    return this.angularFireDb.database.ref("/products/" + product.id).set(product);
+    return this.angularFireDb.database.ref('/products/' + product.id).set(product);
   }
 
   getProductRef() {
-    return this.angularFireDb.database.ref("/products/");
+    return this.angularFireDb.database.ref('/products/');
   }
 
 }
