@@ -1,5 +1,5 @@
 # Ionic-E-kart
-This is an simple E-kart app designed using IONIC, ANGULAR and REDUX.
+This is an simple E-kart app designed using IONIC-3, ANGULAR-4, REDUX and ANGULAR-FIRE.
 Here user can login with his email and password and can upload his own items or can purchase the items, which are divided into various categories.
 This app uses firebase as a backend service.
 
